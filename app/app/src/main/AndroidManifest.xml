@@ -20,6 +20,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".GameActivity"
+            android:theme="@style/FullscreenTheme"/>
+        <activity
+            android:name=".CreditsActivity"
+            android:theme="@style/FullscreenTheme"/>
+        <activity
+            android:name=".ShopActivity"
+            android:theme="@style/FullscreenTheme"/>
     </application>
 
 </manifest>
