@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.io.IOException;
 
-public class DbManager {
+public class DBManager {
     public static final String TABLE_NAME = "shop";
     public static final String CN__ID = "_id";
     public static final String CN_NAME = "name";
