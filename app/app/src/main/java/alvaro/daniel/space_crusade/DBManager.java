@@ -19,7 +19,7 @@ public class DBManager {
     private DBHelper helper;
     private SQLiteDatabase db;
 
-    public DbManager (Context context)  {
+    public void DbManager (Context context)  {
         try {
             helper = new DBHelper(context);
             db = helper.getMyDataBase();

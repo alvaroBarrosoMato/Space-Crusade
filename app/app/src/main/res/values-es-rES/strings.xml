@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game">Jugar</string>
+    <string name="shop">Tienda</string>
+    <string name="settings">Ajustes</string>
+    <string name="credits">Créditos</string>
+</resources>

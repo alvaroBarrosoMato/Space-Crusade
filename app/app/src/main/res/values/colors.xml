@@ -3,6 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="font1">#f0f0f0</color>
+    <color name="blackSpace">#070014</color>
 
+    <color name="buttonDarkBase">#f7a53b</color>
+    <color name="buttonDarkHover">#ffc57c</color>
+    <color name="buttonDarkPressed">#c47715</color>
+    <color name="buttonDarkStroke">#a84510</color>
     <color name="black_overlay">#66000000</color>
 </resources>

@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    android:fitsSystemWindows="true"
+    tools:context=".ShopActivity">
 
-    <ImageView
-        android:id="@+id/Shop_Logo"
+    <TextView
+        android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
-        android:layout_height="77dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true" />
 
-    <ListView
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="Shop"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+</FrameLayout>
