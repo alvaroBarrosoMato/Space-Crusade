@@ -14,12 +14,13 @@ public class DBManager {
     public static final String CN_TYPE = "type";
     public static final String CN_DESCRIPTION = "description";
     public static final String CN_IMAGE = "image";
+    public static final String CN_PRICE = "price";
 
 
     private DBHelper helper;
     private SQLiteDatabase db;
 
-    public DbManager (Context context)  {
+    public DBManager (Context context)  {
         try {
             helper = new DBHelper(context);
             db = helper.getMyDataBase();
@@ -30,17 +31,17 @@ public class DBManager {
     }
 
     public Cursor select (String type) {
-        String[] columnas = new String[]{CN__ID,CN_NAME, CN_TYPE, CN_DESCRIPTION, CN_IMAGE};
+        String[] columnas = new String[]{CN__ID,CN_NAME, CN_TYPE, CN_DESCRIPTION, CN_IMAGE, CN_PRICE};
         return db.query(TABLE_NAME, columnas, CN_TYPE +" LIKE ?", new String[]{"%" + type + "%"}, null, null, null);
     }
 
     public Cursor getAll () {
-        String[] columnas = new String[]{CN__ID,CN_NAME, CN_TYPE, CN_DESCRIPTION, CN_IMAGE};
+        String[] columnas = new String[]{CN__ID,CN_NAME, CN_TYPE, CN_DESCRIPTION, CN_IMAGE, CN_PRICE};
         return db.query(TABLE_NAME, columnas, null, null, null, null, null);
     }
 
     public Cursor getOrdered (String field) {
-        String[] columnas = new String[]{CN__ID,CN_NAME, CN_TYPE, CN_DESCRIPTION, CN_IMAGE};
+        String[] columnas = new String[]{CN__ID,CN_NAME, CN_TYPE, CN_DESCRIPTION, CN_IMAGE, CN_PRICE};
         return db.query(TABLE_NAME, columnas, null, null, null, null, field);
     }
 
