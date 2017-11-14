@@ -23,6 +23,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
@@ -88,10 +89,11 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.7"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.8"
             android:contentDescription="Title"
             android:foregroundGravity="center_horizontal"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/space_crusade_title" />
 
         <Button
@@ -103,12 +105,16 @@
             android:layout_marginStart="60dp"
             android:layout_marginTop="14dp"
             android:layout_weight="1"
+
+
             android:paddingTop="0dp"
             android:text="@string/game"
             android:textAppearance="@android:style/TextAppearance.Theme"
             android:textSize="35sp" />
 
         <Button
+
+
             android:id="@+id/shopButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
