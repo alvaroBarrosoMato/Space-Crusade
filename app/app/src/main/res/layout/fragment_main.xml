@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="0dp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/space_crusade_title" />
+
+        <Button
+            android:id="@+id/gameButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+
+
+            android:paddingTop="0dp"
+            android:text="@string/game"
+            android:textAppearance="@android:style/TextAppearance.Theme"
+            android:textSize="35sp" />
+
+        <Button
+
+
+            android:id="@+id/shopButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:paddingTop="0dp"
+            android:text="@string/shop"
+            android:textAppearance="@android:style/TextAppearance.Theme"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/settingsButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:paddingTop="0dp"
+            android:text="@string/settings"
+            android:textAppearance="@android:style/TextAppearance.Theme"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/creditsButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:paddingTop="0dp"
+            android:text="@string/credits"
+            android:textAppearance="@android:style/TextAppearance.Theme"
+            android:textSize="35sp" />
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

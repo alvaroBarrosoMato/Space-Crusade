@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbd54ac0-9140-4d20-911e-8f188c4d98fe" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/space_crusade_title.png" afterPath="$PROJECT_DIR$/Assets/space_crusade_title.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/space_crusade_title.psd" afterPath="$PROJECT_DIR$/Assets/space_crusade_title.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app/src/main/res/drawable/space_crusade_title.png" afterPath="$PROJECT_DIR$/app/app/src/main/res/drawable/space_crusade_title.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.idea/modules.xml" afterPath="$PROJECT_DIR$/app/.idea/modules.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,9 +43,9 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>

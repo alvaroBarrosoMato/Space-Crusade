@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         changeTheme();
         setContentView(R.layout.activity_main);
+        Intent i = new Intent(MainActivity.this, BaseActivity.class);
+        startActivity(i);
 
         TextView record = (TextView)findViewById(R.id.textRecord);
         record.setText(Integer.toString(myPrefs.getRecord()));
