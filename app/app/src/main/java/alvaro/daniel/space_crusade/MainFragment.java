@@ -3,12 +3,15 @@ package alvaro.daniel.space_crusade;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -49,10 +52,21 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         gameButton.setOnClickListener(this);
         settingsButton = (Button)layout.findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(this);
+
+        AnimationDrawable buttonAnim = (AnimationDrawable)gameButton.getBackground();
+        buttonAnim.start();
+        buttonAnim = (AnimationDrawable)shopButton.getBackground();
+        buttonAnim.start();
+        buttonAnim = (AnimationDrawable)settingsButton.getBackground();
+        buttonAnim.start();
+        buttonAnim = (AnimationDrawable)creditsButton.getBackground();
+        buttonAnim.start();
     }
 
     @Override
     public void onClick(View view) {
+        Animation pressed_anim = AnimationUtils.loadAnimation(getContext(), R.anim.button_pressed_anim);
+        view.startAnimation(pressed_anim);
         switch(view.getId()){
             case R.id.gameButton:{
                 ((BaseActivity)getActivity()).changeMenu(new GameFragment(), true);
@@ -70,7 +84,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    @Override
+    /*@Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
@@ -81,7 +95,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         }catch(ClassCastException e){
             throw new ClassCastException(context.toString()+" must implement OnMainFragmentListener interface");
         }
-    }
+    }*/
 
     public void showMsg(){
         Toast.makeText(getContext(), "Hola me has llamado", Toast.LENGTH_SHORT).show();

@@ -16,12 +16,23 @@
     </style>
 
     <style name="Dark" parent="AppTheme">
+        <item name="colorPrimary">@color/darkBase</item>
+        <item name="colorPrimaryDark">@color/darkStroke</item>
+        <item name="colorAccent">@color/darkAccent</item>
+        <item name="android:windowBackground">@color/blackSpace</item>
+        <item name="android:textColor">@color/font1</item>
+        <item name="android:buttonStyle">@style/MyButtonDark</item>
+        <item name="android:dialogTheme">@style/MyDialogDark</item>
+    </style>
+
+    <style name="Light" parent="AppTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@drawable/background_dark</item>
-        <item name="android:textColor">@color/font1</item>
-        <item name="android:buttonStyle">@style/MyButtonDark</item>
+        <item name="android:windowBackground">@color/blueSky</item>
+        <item name="android:textColor">@color/blackSpace</item>
+        <item name="android:buttonStyle">@style/MyButtonLight</item>
+        <item name="android:dialogTheme">@style/MyDialogLight</item>
     </style>
 
     <style name="MyButton">
@@ -32,22 +43,35 @@
     </style>
 
     <style name="MyButtonDark" parent="MyButton">
-        <item name="android:background">@drawable/button</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:background">@drawable/button_rocket</item>
+        <item name="android:textColor">@color/darkStroke</item>
     </style>
 
     <style name="MyButtonLight" parent="MyButton">
-        <item name="android:background">@drawable/button</item>
+        <item name="android:background">@drawable/button_rocket</item>
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
-    <style name="Light" parent="AppTheme">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/colorAccent</item>
-        <item name="android:textColor">@color/blackSpace</item>
-        <item name="android:buttonStyle">@style/MyButtonLight</item>
+    <style name="MyDialogDark">
+        <item name="android:background">@color/darkBase</item>
+        <item name="android:textColor">@color/darkStroke</item>
+        <item name="android:buttonStyle">@style/MyDialogButtonDark</item>
+    </style>
+
+    <style name="MyDialogButtonDark" parent="MyButton">
+        <item name="android:background">@drawable/dialog_button_dark</item>
+        <item name="android:textColor">@color/darkAccent</item>
+    </style>
+
+    <style name="MyDialogLight">
+        <item name="android:background">@color/darkBase</item>
+        <item name="android:textColor">@color/darkStroke</item>
+        <item name="android:buttonStyle">@style/MyDialogButtonDark</item>
+    </style>
+
+    <style name="MyDialogButtonLight" parent="MyButton">
+        <item name="android:background">@drawable/dialog_button_dark</item>
+        <item name="android:textColor">@color/darkAccent</item>
     </style>
 
 

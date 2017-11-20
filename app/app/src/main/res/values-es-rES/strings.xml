@@ -4,4 +4,8 @@
     <string name="shop">Tienda</string>
     <string name="settings">Ajustes</string>
     <string name="credits">Créditos</string>
+    <string name="exitDialogTitle">Salir de Space Crusade</string>
+    <string name="exitDialogDescription">¿Seguro que quieres salir de Space Crusade?</string>
+    <string name="dialogAffirmative">Salir</string>
+    <string name="dialogNegative">Cancelar</string>
 </resources>

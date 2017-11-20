@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/selected" android:oneshot="false">
-    <item android:drawable="@drawable/background_dark00" android:duration="65" />
-    <item android:drawable="@drawable/background_dark01" android:duration="65" />
-    <item android:drawable="@drawable/background_dark02" android:duration="65" />
-    <item android:drawable="@drawable/background_dark03" android:duration="65" />
-    <item android:drawable="@drawable/background_dark04" android:duration="65" />
-    <item android:drawable="@drawable/background_dark05" android:duration="65" />
-    <item android:drawable="@drawable/background_dark06" android:duration="65" />
-    <item android:drawable="@drawable/background_dark07" android:duration="65" />
-    <item android:drawable="@drawable/background_dark08" android:duration="65" />
-    <item android:drawable="@drawable/background_dark09" android:duration="65" />
+    <item android:drawable="@drawable/background_dark0" android:duration="65" />
+    <item android:drawable="@drawable/background_dark1" android:duration="65" />
+    <item android:drawable="@drawable/background_dark2" android:duration="65" />
+    <item android:drawable="@drawable/background_dark3" android:duration="65" />
+    <item android:drawable="@drawable/background_dark4" android:duration="65" />
+    <item android:drawable="@drawable/background_dark5" android:duration="65" />
+    <item android:drawable="@drawable/background_dark6" android:duration="65" />
+    <item android:drawable="@drawable/background_dark7" android:duration="65" />
+    <item android:drawable="@drawable/background_dark8" android:duration="65" />
+    <item android:drawable="@drawable/background_dark9" android:duration="65" />
     <item android:drawable="@drawable/background_dark10" android:duration="65" />
     <item android:drawable="@drawable/background_dark11" android:duration="65" />
     <item android:drawable="@drawable/background_dark12" android:duration="65" />
