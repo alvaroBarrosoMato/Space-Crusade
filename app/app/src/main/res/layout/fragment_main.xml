@@ -33,10 +33,11 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:elevation="0dp"
+            android:fontFamily="serif-monospace"
             android:text="@string/game"
             android:textAppearance="@android:style/TextAppearance.Theme"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/shopButton"

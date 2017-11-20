@@ -5,7 +5,8 @@
     <string name="settings">Ajustes</string>
     <string name="credits">Créditos</string>
     <string name="exitDialogTitle">Salir de Space Crusade</string>
-    <string name="exitDialogDescription">¿Seguro que quieres salir de Space Crusade?</string>
+    <string name="exitDialogDescription">¿Seguro que quieres salir de SPACE CRUSADE</string>
     <string name="dialogAffirmative">Salir</string>
-    <string name="dialogNegative">Cancelar</string>
+    <string name="dialogNegative">No</string>
+    <string name="creditsContent">Creado por:</string>
 </resources>

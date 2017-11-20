@@ -4,11 +4,16 @@
     <color name="colorPrimaryDark">#303f9f</color>
     <color name="colorAccent">#FF4081</color>
     <color name="font1">#f0f0f0</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="gray_menu">#292929</color>
 
     <color name="blackSpace">#070014</color>
-    <color name="blueSky">#97c5c6</color>
     <color name="darkBase">#a9dbf7</color>
     <color name="darkStroke">#0d4768</color>
     <color name="darkAccent"> #e6b142</color>
-    <color name="black_overlay">#66000000</color>
+
+    <color name="blueSky">#97c5c6</color>
+    <color name="lightBase">#db9c9c</color>
+    <color name="lightStroke">#620606</color>
+    <color name="lightAccent">#9dd963</color>
 </resources>

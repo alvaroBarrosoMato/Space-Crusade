@@ -4,23 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
-    android:orientation="vertical">
+    android:background="@color/black_overlay"
+    android:orientation="vertical"
+    android:theme="?attr/customDialog">
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:gravity="center"
         android:text="@string/exitDialogTitle"
-        android:textSize="30sp"
-        android:theme="@style/MyDialogDark" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="124dp"
+        android:background="#FF202020"
         android:gravity="center"
         android:text="@string/exitDialogDescription"
-        android:textSize="20sp" />
+        android:textColor="@color/font1"
+        android:textSize="24sp" />
 
     <View
         android:layout_width="match_parent"
@@ -30,6 +34,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/gray_menu"
         android:orientation="horizontal">
 
         <Button
@@ -37,30 +42,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:text="@string/dialogNegative"
-            android:textSize="28sp"
-            android:theme="@style/MyDialogDark" />
+            android:textSize="28sp" />
 
         <Button
             android:id="@+id/dialogButtonOk"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:text="@string/dialogAffirmative"
-            android:textSize="28sp"
-            android:theme="@style/MyDialogDark" />
+            android:textSize="28sp" />
     </LinearLayout>
 
 

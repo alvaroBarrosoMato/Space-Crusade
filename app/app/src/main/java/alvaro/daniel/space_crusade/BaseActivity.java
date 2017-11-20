@@ -8,8 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,9 +30,8 @@ public class BaseActivity extends AppCompatActivity /*implements MainFragment.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //cargamos las preferencias guardadas en el movil para configurar los datos
-        if(myPrefs == null) {
+        if(myPrefs == null)
             loadPrefs();
-        }
         changeTheme();
         setContentView(R.layout.activity_background);
 
@@ -51,6 +48,7 @@ public class BaseActivity extends AppCompatActivity /*implements MainFragment.On
         if(savedInstanceState == null && actualFragment == null){
             firstFragment();
         }
+        startBackgroundAnim();
     }
 
     private void firstFragment(){
@@ -111,21 +109,16 @@ public class BaseActivity extends AppCompatActivity /*implements MainFragment.On
         myPrefs = new Preferences(getPreferences(MODE_PRIVATE));
     }
 
-    @Override
+    /*@Override
     public void onWindowFocusChanged(boolean hasFocus){
-        if(hasFocus)
-            startBackgroundAnim();
-    }
+        if(hasFocus) {
+            changeTheme();
+            //startBackgroundAnim();
+        }
+    }*/
 
     private void startBackgroundAnim(){
         AnimationDrawable back = createAnimation();
-        /*if(actual_theme == 0){
-            //background.setBackgroundResource(R.drawable.anim_background_dark);
-            background.setBackground(back);
-        }else{
-            //TODO cambiar por animacion secundaria
-            background.setBackgroundResource(R.drawable.anim_background_dark);
-        }*/
         background.setBackground(back);
         back.start();
     }

@@ -23,15 +23,14 @@ import android.widget.Toast;
 public class MainFragment extends Fragment implements View.OnClickListener{
     View layout;
     Button gameButton, creditsButton, shopButton, settingsButton;
-    ImageButton exitButton;
 
     //interface para recibir los callbacks del fragment desde la actividad principal
-    OnMainFragmentListener mCallback;
+    /*OnMainFragmentListener mCallback;
 
     public interface OnMainFragmentListener{
         public void changeMenu(Fragment newMenu, boolean canBack);
         public void exit();
-    }
+    }*/
 
     @Nullable
     @Override
@@ -77,9 +76,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             case R.id.settingsButton:{
                 break;}
             case R.id.creditsButton:{
-                break;}
-            case R.id.exitButton:{
-                mCallback.exit();
+                ((BaseActivity)getActivity()).changeMenu(new CreditsFragment(), true);
                 break;}
         }
     }
@@ -96,8 +93,4 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             throw new ClassCastException(context.toString()+" must implement OnMainFragmentListener interface");
         }
     }*/
-
-    public void showMsg(){
-        Toast.makeText(getContext(), "Hola me has llamado", Toast.LENGTH_SHORT).show();
-    }
 }

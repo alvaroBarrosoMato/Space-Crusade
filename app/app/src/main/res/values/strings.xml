@@ -6,7 +6,8 @@
     <string name="settings">Settings</string>
     <string name="credits">Credits</string>
     <string name="exitDialogTitle">Exit Space Crusade</string>
-    <string name="exitDialogDescription">Are you sure you want to leave Space Crusade?</string>
+    <string name="exitDialogDescription">Are you sure you want to leave SPACE CRUSADE</string>
     <string name="dialogAffirmative">Exit</string>
-    <string name="dialogNegative">Cancel</string>
+    <string name="dialogNegative">No</string>
+    <string name="creditsContent">Created by:</string>
 </resources>

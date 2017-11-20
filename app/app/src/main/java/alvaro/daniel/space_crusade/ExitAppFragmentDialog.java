@@ -5,9 +5,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 /**
  * Created by Dany on 19/11/2017.
@@ -18,6 +21,7 @@ public class ExitAppFragmentDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
         //get the layout inflater
         LayoutInflater inflater= getActivity().getLayoutInflater();
 
@@ -43,6 +47,7 @@ public class ExitAppFragmentDialog extends DialogFragment {
         dialogOk.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 getActivity().finish();
+                System.exit(0);
             }
         });
 
