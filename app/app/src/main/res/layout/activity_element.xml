@@ -52,7 +52,7 @@
                 android:layout_weight="1"
                 android:text="Description" />
 
-            <Button
+            <TextView
                 android:id="@+id/Element_Buy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

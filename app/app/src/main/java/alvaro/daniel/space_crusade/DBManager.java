@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -22,6 +23,7 @@ public class DBManager {
 
     public DBManager (Context context)  {
         try {
+            Log.i("contextInfo",""+(context==null));
             helper = new DBHelper(context);
             db = helper.getMyDataBase();
         } catch (IOException e) {

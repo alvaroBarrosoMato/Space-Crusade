@@ -14,8 +14,8 @@ import java.io.OutputStream;
 
 public class DBHelper extends SQLiteOpenHelper {
     private Context mycontext;
+    private String DB_PATH ;
 
-    private String DB_PATH = mycontext.getApplicationContext().getPackageName()+"/databases/";
     private static String DB_NAME = "shop.sqlite";
     private SQLiteDatabase myDataBase;
     /*private String DB_PATH = "/data/data/"
@@ -26,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context,DB_NAME,null,1);
         this.mycontext=context;
         boolean dbexist = checkdatabase();
+        DB_PATH = mycontext.getApplicationContext().getPackageName()+"/databases/";
         if (dbexist) {
             //System.out.println("Database exists");
             opendatabase();
@@ -33,6 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
             System.out.println("Database doesn't exist");
             createdatabase();
         }
+
     }
 
     public void createdatabase() throws IOException {
@@ -71,7 +73,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String outfilename = DB_PATH + DB_NAME;
 
         //Open the empty db as the output stream
-        OutputStream myoutput = new FileOutputStream("/data/data/(packagename)/databases   /shop.sqlite");
+        OutputStream myoutput = new FileOutputStream("/data/data/" + mycontext.getApplicationContext().getPackageName() + "/databases/"+"shop.sqlite");
 
         // transfer byte to inputfile to outputfile
         byte[] buffer = new byte[1024];
