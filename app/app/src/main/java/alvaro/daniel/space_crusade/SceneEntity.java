@@ -43,7 +43,7 @@ public class SceneEntity implements Comparable<SceneEntity>{
     public SceneEntity(SceneEntity original){
         this(original.id, original.scene, original.tag, ((Transform)original.getComponent(Component.COMPONENT_TYPE.TRANSFORM)).copy());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            original.components.forEach((id, e) -> this.components.put(id, e.copy()));
+            original.components.forEach((id, e) -> this.components.put(id, e));
         }else{
             for(Map.Entry<Component.COMPONENT_TYPE, Component> e: original.components.entrySet()){
                 this.components.put(e.getKey(), e.getValue().copy());
