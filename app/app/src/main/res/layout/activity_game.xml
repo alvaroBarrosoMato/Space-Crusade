@@ -1,29 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".GameActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Game"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        android:textStyle="bold" />
+    <alvaro.daniel.space_crusade.MyCanvas
+        android:id="@+id/gameCanvas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
+    <VideoView
+        android:id="@+id/videoFrame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <LinearLayout
+        android:id="@+id/exitDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:text="Button" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:windowBackground="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.64">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="center"
+            android:text="@string/dialogAffirmative"
+            android:textSize="30sp"
+            android:theme="?attr/header" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="@drawable/dialog_background"
+            android:gravity="center"
+            android:lineSpacingExtra="10sp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:text="@string/leaveGame"
+            android:textColor="@color/font1"
+            android:textSize="40sp"
+            tools:layout_editor_absoluteY="63dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/footer_background"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/dialogButtonNo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1.2"
+                android:fontFamily="sans-serif"
+                android:text="@string/dialogNegative"
+                android:textSize="28sp"
+                android:theme="?attr/dialogButton" />
+
+            <Button
+                android:id="@+id/dialogButtonRetry"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.9"
+                android:fontFamily="sans-serif"
+                android:text="RESTART"
+                android:textSize="25sp"
+                android:theme="?attr/dialogButton" />
+
+            <Button
+                android:id="@+id/dialogButtonOk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1.1"
+                android:fontFamily="sans-serif"
+                android:text="@string/dialogAffirmative"
+                android:textSize="25sp"
+                android:theme="?attr/dialogButton" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/skipText"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0"
+        android:gravity="center"
+        android:text="@string/skipVideo"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998" />
+
+
+</android.support.constraint.ConstraintLayout>

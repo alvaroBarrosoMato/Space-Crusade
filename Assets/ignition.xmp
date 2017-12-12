@@ -1,0 +1,286 @@
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        ">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+    xmlns:creatorAtom="http://ns.adobe.com/creatorAtom/1.0/"
+    xmlns:xmpDM="http://ns.adobe.com/xmp/1.0/DynamicMedia/"
+    xmlns:stDim="http://ns.adobe.com/xap/1.0/sType/Dimensions#"
+    xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+    xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
+    xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmp:CreatorTool="Adobe Premiere Pro CS6 (Windows)"
+   xmp:CreateDate="2017-11-25T19:40:53+01:00"
+   xmp:MetadataDate="2017-11-25T19:41:54+01:00"
+   xmp:ModifyDate="2017-11-25T19:41:54+01:00"
+   xmpDM:videoFrameRate="25.000000"
+   xmpDM:videoFieldOrder="Upper"
+   xmpDM:videoPixelAspectRatio="15360/4860"
+   xmpDM:audioSampleRate="48000"
+   xmpDM:audioSampleType="Compressed"
+   xmpDM:audioChannelType="Stereo"
+   xmpDM:startTimeScale="25"
+   xmpDM:startTimeSampleSize="1"
+   xmpMM:OriginalDocumentID="xmp.did:63F9ED370CD2E711844DC0D7C1CCEC72"
+   xmpMM:InstanceID="xmp.iid:65F9ED370CD2E711844DC0D7C1CCEC72"
+   xmpMM:DocumentID="xmp.did:64F9ED370CD2E711844DC0D7C1CCEC72"
+   dc:format="MPEG2">
+   <creatorAtom:windowsAtom
+    creatorAtom:extension=".prproj"
+    creatorAtom:invocationFlags="/L"
+    creatorAtom:uncProjectPath="\\?\F:\Users\Dany\Documents\Premiere\Despegue.prproj"/>
+   <creatorAtom:macAtom
+    creatorAtom:applicationCode="1347449455"
+    creatorAtom:invocationAppleEvent="1129468018"/>
+   <xmpDM:projectRef
+    xmpDM:type="movie"/>
+   <xmpDM:videoFrameSize
+    stDim:w="540"
+    stDim:h="960"
+    stDim:unit="pixel"/>
+   <xmpDM:duration
+    xmpDM:value="1964"
+    xmpDM:scale="1/25"/>
+   <xmpDM:startTimecode
+    xmpDM:timeFormat="25Timecode"
+    xmpDM:timeValue="00:00:00:00"/>
+   <xmpDM:altTimecode
+    xmpDM:timeValue="00:00:00:00"
+    xmpDM:timeFormat="25Timecode"/>
+   <xmpMM:Ingredients>
+    <rdf:Bag>
+     <rdf:li
+      stRef:instanceID="xmp.iid:5EF9ED370CD2E711844DC0D7C1CCEC72"
+      stRef:documentID="xmp.did:120154370CD2E711844DC0D7C1CCEC72"
+      stRef:fromPart="time:2875461120000f254016000000d19864051200000f254016000000"
+      stRef:toPart="time:0d19864051200000f254016000000"
+      stRef:filePath="video song.mp3"
+      stRef:maskMarkers="None"/>
+     <rdf:li
+      stRef:instanceID="xmp.iid:8DB2D444ECD1E711A872D85B71833D2F"
+      stRef:documentID="xmp.did:DDA2143DECD1E711A872D85B71833D2F"
+      stRef:fromPart="time:0"
+      stRef:toPart="time:17781120000000f254016000000d2174376960000f254016000000"
+      stRef:filePath="space_crusade_title.png"
+      stRef:maskMarkers="None"/>
+     <rdf:li
+      stRef:instanceID="xmp.iid:F89404B092D1E711A872D85B71833D2F"
+      stRef:documentID="xmp.did:F59404B092D1E711A872D85B71833D2F"
+      stRef:fromPart="time:5486745600000f254016000000d4501163520000f254016000000"
+      stRef:toPart="time:0d4501163520000f254016000000"
+      stRef:filePath="Lanzamiento de transbordador espacial de la NA.S.A.HD.mp4"
+      stRef:maskMarkers="None"/>
+     <rdf:li
+      stRef:instanceID="xmp.iid:F89404B092D1E711A872D85B71833D2F"
+      stRef:documentID="xmp.did:F59404B092D1E711A872D85B71833D2F"
+      stRef:fromPart="time:5486745600000f254016000000d4501163520000f254016000000"
+      stRef:toPart="time:0d4501163520000f254016000000"
+      stRef:filePath="Lanzamiento de transbordador espacial de la NA.S.A.HD.mp4"
+      stRef:maskMarkers="None"/>
+     <rdf:li
+      stRef:instanceID="xmp.iid:F89404B092D1E711A872D85B71833D2F"
+      stRef:documentID="xmp.did:F59404B092D1E711A872D85B71833D2F"
+      stRef:fromPart="time:25411760640000f254016000000d9784696320000f254016000000"
+      stRef:toPart="time:10170800640000f254016000000d9784696320000f254016000000"
+      stRef:filePath="Lanzamiento de transbordador espacial de la NA.S.A.HD.mp4"
+      stRef:maskMarkers="None"/>
+     <rdf:li
+      stRef:instanceID="xmp.iid:F89404B092D1E711A872D85B71833D2F"
+      stRef:documentID="xmp.did:F59404B092D1E711A872D85B71833D2F"
+      stRef:fromPart="time:25411760640000f254016000000d9784696320000f254016000000"
+      stRef:toPart="time:10170800640000f254016000000d9784696320000f254016000000"
+      stRef:filePath="Lanzamiento de transbordador espacial de la NA.S.A.HD.mp4"
+      stRef:maskMarkers="None"/>
+     <rdf:li
+      stRef:instanceID="xmp.iid:F89404B092D1E711A872D85B71833D2F"
+      stRef:documentID="xmp.did:F59404B092D1E711A872D85B71833D2F"
+      stRef:fromPart="time:18278991360000f254016000000d3312368640000f254016000000"
+      stRef:toPart="time:6858432000000f254016000000d3312368640000f254016000000"
+      stRef:filePath="Lanzamiento de transbordador espacial de la NA.S.A.HD.mp4"
+      stRef:maskMarkers="None"/>
+     <rdf:li
+      stRef:instanceID="xmp.iid:F89404B092D1E711A872D85B71833D2F"
+      stRef:documentID="xmp.did:F59404B092D1E711A872D85B71833D2F"
+      stRef:fromPart="time:18278991360000f254016000000d3312368640000f254016000000"
+      stRef:toPart="time:6858432000000f254016000000d3312368640000f254016000000"
+      stRef:filePath="Lanzamiento de transbordador espacial de la NA.S.A.HD.mp4"
+      stRef:maskMarkers="None"/>
+     <rdf:li
+      stRef:instanceID="xmp.iid:F89404B092D1E711A872D85B71833D2F"
+      stRef:documentID="xmp.did:F59404B092D1E711A872D85B71833D2F"
+      stRef:fromPart="time:10943009280000f254016000000d2357268480000f254016000000"
+      stRef:toPart="time:4501163520000f254016000000d2357268480000f254016000000"
+      stRef:filePath="Lanzamiento de transbordador espacial de la NA.S.A.HD.mp4"
+      stRef:maskMarkers="None"/>
+     <rdf:li
+      stRef:instanceID="xmp.iid:F89404B092D1E711A872D85B71833D2F"
+      stRef:documentID="xmp.did:F59404B092D1E711A872D85B71833D2F"
+      stRef:fromPart="time:10943009280000f254016000000d2357268480000f254016000000"
+      stRef:toPart="time:4501163520000f254016000000d2357268480000f254016000000"
+      stRef:filePath="Lanzamiento de transbordador espacial de la NA.S.A.HD.mp4"
+      stRef:maskMarkers="None"/>
+    </rdf:Bag>
+   </xmpMM:Ingredients>
+   <xmpMM:History>
+    <rdf:Seq>
+     <rdf:li
+      stEvt:action="created"
+      stEvt:instanceID="xmp.iid:63F9ED370CD2E711844DC0D7C1CCEC72"
+      stEvt:when="2017-11-25T19:41:31+01:00"
+      stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"/>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:instanceID="xmp.iid:65F9ED370CD2E711844DC0D7C1CCEC72"
+      stEvt:when="2017-11-25T19:41:54+01:00"
+      stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"
+      stEvt:changed="/"/>
+    </rdf:Seq>
+   </xmpMM:History>
+   <xmpMM:Pantry>
+    <rdf:Bag>
+     <rdf:li>
+      <rdf:Description
+       xmpMM:InstanceID="xmp.iid:5EF9ED370CD2E711844DC0D7C1CCEC72"
+       xmpMM:DocumentID="xmp.did:120154370CD2E711844DC0D7C1CCEC72"
+       xmpMM:OriginalDocumentID="xmp.did:120154370CD2E711844DC0D7C1CCEC72"
+       xmp:MetadataDate="2017-11-25T19:13:07+01:00"
+       xmp:ModifyDate="2017-11-25T19:12:37+01:00"
+       xmpDM:partOfCompilation="false"
+       xmpDM:audioSampleRate="44100"
+       xmpDM:audioSampleType="Compressed"
+       xmpDM:audioChannelType="Stereo">
+      <xmpMM:History>
+       <rdf:Seq>
+        <rdf:li
+         stEvt:action="saved"
+         stEvt:instanceID="xmp.iid:130154370CD2E711844DC0D7C1CCEC72"
+         stEvt:when="2017-11-25T19:12:37+01:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"
+         stEvt:changed="/"/>
+        <rdf:li
+         stEvt:action="saved"
+         stEvt:instanceID="xmp.iid:5DF9ED370CD2E711844DC0D7C1CCEC72"
+         stEvt:when="2017-11-25T19:12:37+01:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"
+         stEvt:changed="/metadata"/>
+        <rdf:li
+         stEvt:action="saved"
+         stEvt:instanceID="xmp.iid:5EF9ED370CD2E711844DC0D7C1CCEC72"
+         stEvt:when="2017-11-25T19:13:07+01:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"
+         stEvt:changed="/metadata"/>
+       </rdf:Seq>
+      </xmpMM:History>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       xmpMM:InstanceID="xmp.iid:8DB2D444ECD1E711A872D85B71833D2F"
+       xmpMM:DocumentID="xmp.did:DDA2143DECD1E711A872D85B71833D2F"
+       xmpMM:OriginalDocumentID="xmp.did:DDA2143DECD1E711A872D85B71833D2F"
+       xmp:MetadataDate="2017-11-25T15:24:02+01:00"
+       xmp:ModifyDate="2017-11-25T15:23:46+01:00"
+       xmpDM:videoPixelAspectRatio="1000000/1000000"
+       xmpDM:videoAlphaMode="straight"
+       xmpDM:videoFrameRate="0.000000">
+      <xmpMM:History>
+       <rdf:Seq>
+        <rdf:li
+         stEvt:action="saved"
+         stEvt:instanceID="xmp.iid:DEA2143DECD1E711A872D85B71833D2F"
+         stEvt:when="2017-11-25T15:23:46+01:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"
+         stEvt:changed="/"/>
+        <rdf:li
+         stEvt:action="saved"
+         stEvt:instanceID="xmp.iid:E2A2143DECD1E711A872D85B71833D2F"
+         stEvt:when="2017-11-25T15:23:47+01:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"
+         stEvt:changed="/metadata"/>
+        <rdf:li
+         stEvt:action="saved"
+         stEvt:instanceID="xmp.iid:8DB2D444ECD1E711A872D85B71833D2F"
+         stEvt:when="2017-11-25T15:24:02+01:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"
+         stEvt:changed="/metadata"/>
+       </rdf:Seq>
+      </xmpMM:History>
+      <xmpDM:videoFrameSize
+       stDim:w="1667"
+       stDim:h="600"
+       stDim:unit="pixel"/>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       xmp:CreateDate="2017-10-20T18:56:31Z"
+       xmp:ModifyDate="2017-11-25T03:42:40Z"
+       xmp:MetadataDate="2017-11-25T04:43+01:00"
+       xmpMM:InstanceID="xmp.iid:F89404B092D1E711A872D85B71833D2F"
+       xmpMM:DocumentID="xmp.did:F59404B092D1E711A872D85B71833D2F"
+       xmpMM:OriginalDocumentID="xmp.did:F59404B092D1E711A872D85B71833D2F"
+       xmpDM:videoPixelAspectRatio="1/1"
+       xmpDM:videoAlphaMode="none"
+       xmpDM:audioSampleRate="44100"
+       xmpDM:audioSampleType="Compressed"
+       xmpDM:audioChannelType="Stereo"
+       xmpDM:videoFrameRate="30.000000">
+      <xmpMM:History>
+       <rdf:Seq>
+        <rdf:li
+         stEvt:action="saved"
+         stEvt:instanceID="xmp.iid:F69404B092D1E711A872D85B71833D2F"
+         stEvt:when="2017-11-25T04:42:40+01:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"
+         stEvt:changed="/"/>
+        <rdf:li
+         stEvt:action="saved"
+         stEvt:instanceID="xmp.iid:F79404B092D1E711A872D85B71833D2F"
+         stEvt:when="2017-11-25T04:42:41+01:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"
+         stEvt:changed="/metadata"/>
+        <rdf:li
+         stEvt:action="saved"
+         stEvt:instanceID="xmp.iid:F89404B092D1E711A872D85B71833D2F"
+         stEvt:when="2017-11-25T04:43+01:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CS6 (Windows)"
+         stEvt:changed="/metadata"/>
+       </rdf:Seq>
+      </xmpMM:History>
+      <xmpDM:videoFrameSize
+       stDim:w="1280"
+       stDim:h="720"
+       stDim:unit="pixel"/>
+      <xmpDM:duration
+       xmpDM:value="27700244"
+       xmpDM:scale="1/90000"/>
+      </rdf:Description>
+     </rdf:li>
+    </rdf:Bag>
+   </xmpMM:Pantry>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                           
+<?xpacket end="w"?>

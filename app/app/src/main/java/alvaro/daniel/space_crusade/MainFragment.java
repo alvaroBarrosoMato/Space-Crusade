@@ -37,6 +37,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //cargamos el layout para este fragmento
         layout = inflater.inflate(R.layout.fragment_main, container, false);
+        ((BaseActivity)getActivity()).setFont(layout);
         return layout;
     }
 
@@ -68,15 +69,18 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         view.startAnimation(pressed_anim);
         switch(view.getId()){
             case R.id.gameButton:{
-                ((BaseActivity)getActivity()).changeMenu(new GameFragment(), true);
+                ((BaseActivity)getActivity()).stop();
+                Intent i = new Intent(getActivity(), GameActivity.class);
+                startActivity(i);
                 //mCallback.changeMenu(new GameFragment(), true);
                 break;}
             case R.id.shopButton:{
                 break;}
             case R.id.settingsButton:{
+                ((BaseActivity)getActivity()).changeFragment(new SettingsFragment());
                 break;}
             case R.id.creditsButton:{
-                ((BaseActivity)getActivity()).changeMenu(new CreditsFragment(), true);
+                ((BaseActivity)getActivity()).changeFragment(new CreditsFragment());
                 break;}
         }
     }

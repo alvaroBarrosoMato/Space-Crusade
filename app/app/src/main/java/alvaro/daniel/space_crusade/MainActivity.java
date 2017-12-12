@@ -181,12 +181,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;}
             case R.id.settingsButton:{
-                Intent i = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(i);
+                //Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+                //startActivity(i);
                 break;}
             case R.id.creditsButton:{
-                Intent i = new Intent(MainActivity.this, CreditsActivity.class);
-                startActivity(i);
+                //Intent i = new Intent(MainActivity.this, CreditsActivity.class);
+                //startActivity(i);
                 break;}
             case R.id.exitButton:{
                 finish();

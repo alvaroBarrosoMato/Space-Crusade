@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainViewGroup"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="140dp"
+        android:text="V 1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,36 +28,37 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0.8"
-            android:scaleType="fitCenter"
+            android:layout_height="350dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:scaleType="fitStart"
             app:srcCompat="@drawable/space_crusade_title" />
 
         <Button
             android:id="@+id/gameButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:fontFamily="serif-monospace"
+            android:fontFamily="sans-serif"
             android:text="@string/game"
             android:textAppearance="@android:style/TextAppearance.Theme"
-            android:textSize="40sp"
+            android:textSize="40dp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/shopButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
+            android:fontFamily="sans-serif"
             android:paddingTop="0dp"
             android:scaleX="-1"
             android:text="@string/shop"
@@ -58,12 +69,13 @@
         <Button
             android:id="@+id/settingsButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
+            android:fontFamily="sans-serif"
             android:paddingTop="0dp"
             android:text="@string/settings"
             android:textAppearance="@android:style/TextAppearance.Theme"
@@ -72,12 +84,13 @@
         <Button
             android:id="@+id/creditsButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
+            android:fontFamily="sans-serif"
             android:paddingTop="0dp"
             android:scaleX="-1"
             android:text="@string/credits"

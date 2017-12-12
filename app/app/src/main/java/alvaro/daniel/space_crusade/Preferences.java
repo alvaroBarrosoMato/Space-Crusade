@@ -2,10 +2,7 @@ package alvaro.daniel.space_crusade;
 
 import android.content.SharedPreferences;
 
-import java.util.Map;
 import java.util.Set;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by Dany on 05/11/2017.
@@ -26,19 +23,30 @@ public class Preferences {
     public static final int SHELL_V2 = 11;
     public static final int SHELL_V3 = 12;
 
+    //variables guardadas en el dispositivo
     int money;
     int theme;
     int record;
     //el volumen va en una escala 0-50
-    float musicVol;
-    float soundsVol;
+    int musicVol;
+    int soundsVol;
     Set<Integer> upgrades;
+    boolean firstGame;
+
+    //variables auxiliares
+    boolean musicMuted;
+    boolean soundsMuted;
+    public int musicBefore;
+    public int soundsBefore;
+
     SharedPreferences myPrefs;
     SharedPreferences.Editor prefsEditor;
 
     public Preferences(SharedPreferences prefs){
         myPrefs = prefs;
         prefsEditor = myPrefs.edit();
+        //prefsEditor.clear();
+        //prefsEditor.commit();
         loadPrefsValues();
     }
 
@@ -46,8 +54,13 @@ public class Preferences {
         money = myPrefs.getInt("money", 0);
         theme = myPrefs.getInt("theme", 0);
         record = myPrefs.getInt("record", 0);
-        musicVol = myPrefs.getFloat("musicVol", 50);
-        soundsVol = myPrefs.getFloat("soundsVol", 50);
+        musicVol = myPrefs.getInt("musicVol", 50);
+        soundsVol = myPrefs.getInt("soundsVol", 50);
+        firstGame = myPrefs.getBoolean("firstGame", false);
+        musicMuted = musicVol == 0;
+        soundsMuted = soundsVol == 0;
+        musicBefore = Math.max(15, musicVol);
+        soundsBefore = Math.max(15, soundsVol);
     }
 
     public int getMoney(){
@@ -86,5 +99,49 @@ public class Preferences {
         theme = value;
         prefsEditor.putInt("theme", theme);
         prefsEditor.apply();
+    }
+
+    public int getMusicVol(){
+        return musicVol;
+    }
+
+    public void refreshMusicVol(int value){
+        if(musicVol >= 15)
+            musicBefore = musicVol;
+        musicVol = value;
+        prefsEditor.putInt("musicVol", musicVol);
+        prefsEditor.apply();
+        musicMuted = musicVol == 0;
+    }
+
+    public int getSoundsVol(){
+        return soundsVol;
+    }
+
+    public void refreshSoundsVol(int value){
+        if(soundsVol >= 15)
+            soundsBefore = soundsVol;
+        soundsVol = value;
+        prefsEditor.putInt("soundsVol", soundsVol);
+        prefsEditor.apply();
+        soundsMuted = soundsVol == 0;
+    }
+
+    public boolean isFirstGame() {
+        return firstGame;
+    }
+
+    public void refreshFirstGame(boolean firstGame) {
+        this.firstGame = firstGame;
+        prefsEditor.putBoolean("firstGame", firstGame);
+        prefsEditor.apply();
+    }
+
+    public boolean isMusicMuted(){
+        return musicMuted;
+    }
+
+    public boolean isSoundsMuted(){
+        return soundsMuted;
     }
 }

@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name" translatable="false">Space-Crusade</string>
 
-    <string name="game">Play</string>
-    <string name="shop">Shop</string>
-    <string name="settings">Settings</string>
-    <string name="credits">Credits</string>
+    <string name="game">PLAY</string>
+    <string name="shop">SHOP</string>
+    <string name="settings">SETTINGS</string>
+    <string name="credits">CREDITS</string>
     <string name="exitDialogTitle">Exit Space Crusade</string>
     <string name="exitDialogDescription">Are you sure you want to leave SPACE CRUSADE</string>
-    <string name="dialogAffirmative">Exit</string>
-    <string name="dialogNegative">No</string>
+    <string name="dialogAffirmative">EXIT</string>
+    <string name="dialogNegative">NO</string>
     <string name="creditsContent">Created by:</string>
+    <string name="musicVol">Music Volume</string>
+    <string name="soundVol">Sounds Volume</string>
+    <string name="theme">Theme</string>
+    <string name="skipVideo">Tap to skip</string>
+    <string name="leaveGame">Leave the Game?</string>
 </resources>

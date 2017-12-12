@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="game">Jugar</string>
-    <string name="shop">Tienda</string>
-    <string name="settings">Ajustes</string>
-    <string name="credits">Créditos</string>
+    <string name="game">JUGAR</string>
+    <string name="shop">TIENDA</string>
+    <string name="settings">AJUSTES</string>
+    <string name="credits">CREDITOS</string>
     <string name="exitDialogTitle">Salir de Space Crusade</string>
     <string name="exitDialogDescription">¿Seguro que quieres salir de SPACE CRUSADE</string>
-    <string name="dialogAffirmative">Salir</string>
-    <string name="dialogNegative">No</string>
+    <string name="dialogAffirmative">SALIR</string>
+    <string name="dialogNegative">NO</string>
     <string name="creditsContent">Creado por:</string>
+    <string name="musicVol">Música</string>
+    <string name="soundVol">" Sonidos"</string>
+    <string name="theme">Tema</string>
+    <string name="skipVideo">Toca para saltar</string>
+    <string name="leaveGame">¿Salir de la partida?</string>
 </resources>
