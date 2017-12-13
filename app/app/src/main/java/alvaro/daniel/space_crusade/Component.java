@@ -29,7 +29,7 @@ public class Component {
 
     public Component(Component original){
         this.type = original.type;
-        this.entity = original.entity.copy();
+        this.entity = original.entity;
     }
 
     public Component copy(){

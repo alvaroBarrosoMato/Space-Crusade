@@ -146,7 +146,11 @@ public class Scene {
         stop();
         frame = 0;
         uframe = 0;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        for(Map.Entry<String, SceneEntity> e : originalEntities.entrySet()){
+            runningEntities.put(e.getKey(), e.getValue().copy());
+        }
+
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             originalEntities.forEach((id, e) -> {
                 addToRun(e.copy());
             });
@@ -154,7 +158,7 @@ public class Scene {
             for(SceneEntity e : originalEntities.values()){
                 addToRun(e.copy());
             }
-        }
+        }*/
         /*if(debug){
             for (SceneEntity e: runningEntities.values()) {
                 Log.i("Entidad inicial", e.toString());

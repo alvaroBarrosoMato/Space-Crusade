@@ -75,7 +75,12 @@ public class Behaviour extends Component {
     }
 
     public Behaviour(Behaviour original){
-        this((MonoBehaviour[])original.onCreate.toArray(), (MonoBehaviour[])original.onUpdate.toArray(), (MonoBehaviour[])original.onDestroy.toArray(), new HashMap<>(original.memory));
+        this(original.onCreate.toArray(new MonoBehaviour[original.onCreate.size()]), original.onUpdate.toArray(new MonoBehaviour[original.onUpdate.size()]), original.onDestroy.toArray(new MonoBehaviour[original.onDestroy.size()]));
+        for(MonoBehaviour mb : original.onCreate){
+            //this.onCreate.add(mb.clone());
+            //this.memory.put(e.getKey(), e.getValue())
+        }
+        this.memory.putAll(original.memory);
     }
 
     public Behaviour copy(){
@@ -84,6 +89,8 @@ public class Behaviour extends Component {
 
     public void addBehaviour(@NonNull MonoBehaviour mb,@NonNull BEHAVIOUR_TYPE type){
         mb.behaviourRef = this;
+        mb.m = this.memory;
+        mb.e = this.entity;
         switch(type){
             case BEHAVIOUR_ONCREATE:
                 this.onCreate.add(mb);

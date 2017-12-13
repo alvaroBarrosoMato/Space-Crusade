@@ -14,4 +14,6 @@
     <string name="theme">Tema</string>
     <string name="skipVideo">Toca para saltar</string>
     <string name="leaveGame">¿Salir de la partida?</string>
+    <string name="distance">Distancia:</string>
+    <string name="new_record">¡Nuevo Record!</string>
 </resources>

@@ -21,6 +21,8 @@ public class Sprite extends Component {
 
     Vector2 offset;
     float image_speed;
+
+    Vector2 textOffset;
     boolean elemUI = false;
     String text = "";
     Paint textPaint;
@@ -47,6 +49,7 @@ public class Sprite extends Component {
         textPaint.setColor(Color.WHITE);
         this.width = images.length > 0? images[0].getWidth() : 0;
         this.height = images.length > 0? images[0].getHeight() : 0;
+        this.textOffset = new Vector2(0,0);
     }
 
     public Sprite(){
@@ -58,10 +61,14 @@ public class Sprite extends Component {
     }
 
     public Sprite(Sprite original){
-        this((Bitmap[])original.images.toArray(), original.image_speed, original.elemUI, original.offset.copy());
+        //Bitmap[] copy = original.images.toArray(new Bitmap[original.images.size()]);
+        this(original.images.toArray(new Bitmap[original.images.size()]), original.image_speed, original.elemUI, original.offset.copy());
+        this.textPaint = new Paint(original.textPaint);
+        this.text = original.text;
+        this.textOffset = original.textOffset.copy();
     }
 
-    public Sprite clone(){
+    public Sprite copy(){
         return new Sprite(this);
     }
 
@@ -108,7 +115,7 @@ public class Sprite extends Component {
             if(entity.scene.spaceFont != null){
                 textPaint.setTypeface(entity.scene.spaceFont);
             }
-            canvas.drawText(text, pos.x, pos.y, textPaint);
+            canvas.drawText(text, pos.x + textOffset.x, pos.y + textOffset.y, textPaint);
         }
         if(entity.scene.debug){
             Collider c = (Collider)entity.getComponent(COMPONENT_TYPE.COLLIDER);
@@ -126,18 +133,18 @@ public class Sprite extends Component {
 
     public void calculeImageIndex(){
         this.anim_controller += this.image_speed;
-        if(this.anim_controller >= 1){
+        if(this.anim_controller >= 1.0f){
             this.image_index++;
             if(this.image_index >= images.size()){
                 this.image_index = 0;
             }
-            this.anim_controller %= 1;
-        }else if(this.anim_controller <= -1){
+            this.anim_controller -= 1.0f;
+        }else if(this.anim_controller <= -1.0f){
             this.image_index--;
             if(this.image_index <= -1){
                 this.image_index = images.size()-1;
             }
-            this.anim_controller %= 1;
+            this.anim_controller += 1.0f;
         }
     }
 }

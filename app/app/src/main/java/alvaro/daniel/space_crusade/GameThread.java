@@ -5,7 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Build;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -231,17 +233,23 @@ public class GameThread extends Thread {
         sprH = sprites.get("hud_base").height;
         SceneEntity hudBase = new SceneEntity("hud_base", myScene, Scene.TAGS.UI, new Transform(new Vector2(w-sprW, convert(50)+sprH/2), -49));
         hudBase.addComponent(sprites.get("hud_base"));
+        hudBase.addComponent(behaviours.get("hud_controller").copy());
         myScene.addEntity(hudBase);
         //hp
         SceneEntity hudHp = new SceneEntity("hud_hp", myScene, Scene.TAGS.UI, new Transform(new Vector2(w-sprW, convert(50)+sprH), -50));
         hudHp.addComponent(sprites.get("hud_hp"));
-        hudHp.addComponent(behaviours.get("hud_controller"));
+        hudHp.addComponent(behaviours.get("hud_controller").copy());
         myScene.addEntity(hudHp);
         //fuel
         SceneEntity hudFuel = new SceneEntity("hud_fuel", myScene, Scene.TAGS.UI, new Transform(new Vector2(w-sprW, convert(50)+sprH), -50));
         hudFuel.addComponent(sprites.get("hud_fuel"));
-        hudHp.addComponent(behaviours.get("hud_controller"));
+        hudFuel.addComponent(behaviours.get("hud_controller").copy());
         myScene.addEntity(hudFuel);
+
+        /*//spiner
+        SceneEntity spiner = new SceneEntity("spiner", myScene, Scene.TAGS.UI, new Transform(new Vector2(w/2, h/2), -50));
+        spiner.addComponent(sprites.get("spiner"));
+        myScene.addEntity(spiner);*/
 
         //GameController
         SceneEntity gameController = new SceneEntity("game_controller", myScene, Scene.TAGS.DEFAULT);
@@ -280,7 +288,9 @@ public class GameThread extends Thread {
                         0.4f, false, new Vector2(-0.5f, 1.1f )),
                 new SpriteResource("explosion", new int[]{R.drawable.explosion1, R.drawable.explosion2, R.drawable.explosion3, R.drawable.explosion4, R.drawable.explosion5, R.drawable.explosion6
                         , R.drawable.explosion7, R.drawable.explosion8, R.drawable.explosion9, R.drawable.explosion10, R.drawable.explosion11, R.drawable.explosion12, R.drawable.explosion13
-                        , R.drawable.explosion14, R.drawable.explosion15, R.drawable.explosion16},0.3f, false, new Vector2(-0.5f, -0.5f )),
+                        , R.drawable.explosion14, R.drawable.explosion15, R.drawable.explosion16},0.4f, false, new Vector2(-0.5f, -0.5f )),
+                /*new SpriteResource("spiner", new int[]{R.drawable.spiner1, R.drawable.spiner2, R.drawable.spiner3, R.drawable.spiner4, R.drawable.spiner5, R.drawable.spiner6, R.drawable.spiner7, R.drawable.spiner8},
+                        0.1f, true, new Vector2(-0.5f, -0.5f )),*/
         };
 
         //int[] sprIds = {R.drawable.clouds_landscape, R.drawable.space_ship, R.drawable.launch_button_rest};
@@ -394,6 +404,27 @@ public class GameThread extends Thread {
             public Object call(){
                 if(behaviourRef == null || e == null)
                     return null;
+
+                SceneEntity ss = e.scene.getEntity("space_ship");
+                int hp = (int)ss.getMemory().get("hp");
+                //game over
+                if(hp <= 0){
+                    myScene.pause();
+                    float distance = (float)m.get("distance");
+
+                    // Get a handler that can be used to post to the main thread
+                    Handler mainHandler = new Handler(context.getMainLooper());
+
+                    Runnable gameOverRunnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            ((GameActivity)context).toggleGameOver(true, (int)distance);
+                        } // This is your code
+                    };
+                    mainHandler.post(gameOverRunnable);
+                    return null;
+                }
+
                 boolean start = (boolean)m.get("start");
                 if(start){
                     SceneEntity countdown =  e.scene.getEntity("countdown");
@@ -407,7 +438,6 @@ public class GameThread extends Thread {
                    if(countdown != null)
                        countdown.destroy();
                    //lanzamos el cohete
-                    SceneEntity ss = e.scene.getEntity("space_ship");
                     if(ss != null) {
                         //ss.getMemory().put("launch", true);
                         ss.getMemory().put("launch_state", 1);
@@ -417,18 +447,20 @@ public class GameThread extends Thread {
                 }
                 boolean launched = (boolean)m.get("launched");
                 if(launched){
-                    Kinematic ss = (Kinematic)e.scene.getEntity("space_ship").getComponent(Component.COMPONENT_TYPE.KINEMATIC);
+                    Kinematic ssk = (Kinematic)ss.getComponent(Component.COMPONENT_TYPE.KINEMATIC);
                     Kinematic landscape = (Kinematic)e.scene.getEntity("landscape").getComponent(Component.COMPONENT_TYPE.KINEMATIC);
                     Kinematic landscapeClouds = (Kinematic)e.scene.getEntity("landscape_clouds").getComponent(Component.COMPONENT_TYPE.KINEMATIC);
                     Kinematic button = (Kinematic)e.scene.getEntity("launch_button").getComponent(Component.COMPONENT_TYPE.KINEMATIC);
                     Kinematic bush = (Kinematic)e.scene.getEntity("landscape_bush").getComponent(Component.COMPONENT_TYPE.KINEMATIC);
                     Kinematic controlCenter = (Kinematic)e.scene.getEntity("control_center").getComponent(Component.COMPONENT_TYPE.KINEMATIC);
-                    landscape.speed.y = -ss.speed.y;
-                    landscapeClouds.speed.y = -ss.speed.y/2;
-                    button.speed.y = -ss.speed.y * 2f;
-                    bush.speed.y = -ss.speed.y * 1.5f;
-                    controlCenter.speed.y = -ss.speed.y *1.2f;
-                    ss.speed = new Vector2();
+                    landscape.speed.y = -ssk.speed.y;
+                    landscapeClouds.speed.y = -ssk.speed.y/2;
+                    button.speed.y = -ssk.speed.y * 2f;
+                    bush.speed.y = -ssk.speed.y * 1.5f;
+                    controlCenter.speed.y = -ssk.speed.y *1.2f;
+                    ssk.slowMove = new Vector2(1, 0);
+                    ssk.friction.y = 0;
+                    ssk.acceleration.y = -0.5f;
                     m.put("launched", false);
                 }
                 return null;
@@ -437,6 +469,8 @@ public class GameThread extends Thread {
         Behaviour gc = new Behaviour(new MonoBehaviour[]{gcMB});
         gc.memory.put("start", false);
         gc.memory.put("launched", false);
+        gc.memory.put("distance", 0.0f);
+        gc.memory.put("ss_speed", 0.0f);
         behaviours.put("game_controller", gc);
 
         //SpaceShip
@@ -449,6 +483,7 @@ public class GameThread extends Thread {
                 Transform ssTran = (Transform)e.getComponent(Component.COMPONENT_TYPE.TRANSFORM);
                 int hp = (int)m.get("hp");
                 int fuel = (int)m.get("fuel");
+
                 //boolean launch = (boolean)behaviourRef.memory.get("launch");
                 int launchState = (int)behaviourRef.memory.get("launch_state");
                 if(launchState == 1){
@@ -477,8 +512,8 @@ public class GameThread extends Thread {
                         e.scene.addEntity(explosion);
                     }*/
                     SceneEntity fire = new SceneEntity("fire", myScene, Scene.TAGS.DEFAULT, new Transform(ssTran.position.copy(), -9));
-                    fire.addComponent(sprites.get("fire_flicker"));
-                    Behaviour follow = behaviours.get("follow");
+                    fire.addComponent(sprites.get("fire_flicker").copy());
+                    Behaviour follow = behaviours.get("follow").copy();
                     follow.memory.put("target", e.id);
                     follow.memory.put("pos_smoothing", 0.9f);
                     follow.memory.put("rot_smoothing", 0.7f);
@@ -490,7 +525,7 @@ public class GameThread extends Thread {
                 if(launchState == 2){
                     int acc_timer = (int)m.get("acc_timer");
                     if(acc_timer == 0){
-                        ssKin.acceleration.y = -0.05f;
+                        ssKin.acceleration.y = -0.06f;
                         m.put("launch_state", 3);
                     }else{
                         m.put("acc_timer", acc_timer-1);
@@ -500,13 +535,14 @@ public class GameThread extends Thread {
                 if(launchState == 3){
                     if(ssTran.position.y <= e.scene.canvas_height/2){
                         e.scene.getEntity("game_controller").getMemory().put("launched", true);
-                        ssKin.acceleration = new Vector2();
+                        ssKin.acceleration.y = -1f;
                         m.put("launch_state", 4);
                     }
                 }
 
                 if(launchState > 4){
                     Input i = GameActivity.input;
+                    Log.i("gyroscope", i.orientations[2]+"");
                     if(i.orientations[2] > 0.5){
                         ssKin.rotAcceleration = 0.5f;
                     }else if( i.orientations[2] < 0.5){
@@ -516,11 +552,10 @@ public class GameThread extends Thread {
 
                 boolean destroying = (boolean)m.get("destroying");
                 if(destroying){
-                    if(e.scene.frame % 4 == 0){
+                    if(e.scene.frame % 10 == 0){
                        m.put("hp", hp-1);
                     }
-                    if(e.scene.uframe % 60 == 0){
-                        Log.i("create explosion", "frame: "+e.scene.uframe);
+                    if(e.scene.uframe % 80 == 0){
                         e.scene.addEntity(createExplosion(ssTran.position.copy(), -11, true));
                     }
                 }
@@ -544,7 +579,8 @@ public class GameThread extends Thread {
                 SceneEntity ss = e.scene.getEntity("space_ship");
                 Sprite spr = (Sprite)e.getComponent(Component.COMPONENT_TYPE.SPRITE);
                 Transform t = (Transform)e.getComponent(Component.COMPONENT_TYPE.TRANSFORM);
-
+               // SceneEntity gcB = e.scene.getEntity("game_controller");
+                Log.i("behaviour", e.id + " "+ (int)m.get("hp"));
                 if(e.id.equals("hud_hp")){
                     int actualHp = (int)ss.getMemory().get("hp");
                     int savedHp = (int)m.get("hp");
@@ -553,7 +589,19 @@ public class GameThread extends Thread {
                         m.put("hp", actualHp);
                     }
                 }else if(e.id.equals("hud_fuel")){
-
+                    int actualHp = (int)ss.getMemory().get("hp");
+                    int savedHp = (int)m.get("hp");
+                    if(actualHp != savedHp && actualHp >= 0){
+                        t.scale.y = (float)actualHp/100.0f;
+                        m.put("hp", actualHp);
+                    }
+                }else if(e.id.equals("hud_base")){
+                    if(spr.textOffset.magnitude() == 0){
+                        spr.textOffset.y = (float)spr.height+dpToPx(20);
+                        spr.textPaint.setColor(Color.BLACK);
+                        spr.textPaint.setTextAlign(Paint.Align.CENTER);
+                    }
+                    spr.text = (int)((Kinematic)ss.getComponent(Component.COMPONENT_TYPE.KINEMATIC)).speed.magnitude()*40f + " Km/H";
                 }
                 return null;
             }
@@ -622,17 +670,16 @@ public class GameThread extends Thread {
     }
 
     public SceneEntity createExplosion(Vector2 pos, float depth, boolean random){
-        Transform t = new Transform(pos, depth);
+        Transform t = new Transform(pos, depth,0, new Vector2(2f,2f));
         if(random){
             t.position.add(new Vector2(((float)Math.random() - 0.5f) * 100, ((float)Math.random() - 0.5f) * 170));
-            float scaleRnd = (float)Math.random() * 7.0f;
-            t.scale = new Vector2(Scene.clamp( scaleRnd,1, 3), Scene.clamp(scaleRnd, 1,3));
+            float scaleRnd = (float)Math.random() * 4.0f;
+            t.scale = new Vector2(Scene.clamp( scaleRnd,1, 2.5f), Scene.clamp(scaleRnd, 1,2.5f));
             t.rotation = (float)Math.random()*360;
         }
-
         SceneEntity explosion = new SceneEntity("explosion#"+myScene.getIdNumber(), myScene, Scene.TAGS.DEFAULT, t);
-        explosion.addComponent(sprites.get("explosion"));
-        explosion.addComponent(behaviours.get("end_anim"));
+        explosion.addComponent(sprites.get("explosion").copy());
+        explosion.addComponent(behaviours.get("end_anim").copy());
         return explosion;
     }
 

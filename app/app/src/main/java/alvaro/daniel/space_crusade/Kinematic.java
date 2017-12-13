@@ -13,6 +13,9 @@ public class Kinematic extends Component {
     float rotSpeed;
     float rotFriction;
     float rotAcceleration;
+    Vector2 slowMove;
+    float slowRot;
+
 
     public Kinematic(Vector2 speed, Vector2 acc, Vector2 fric, float rotSpeed, float rotAcceleration, float rotFriction){
         super(COMPONENT_TYPE.KINEMATIC);
@@ -22,6 +25,8 @@ public class Kinematic extends Component {
         this.rotSpeed = rotSpeed;
         this.rotAcceleration = rotAcceleration;
         this.rotFriction = rotFriction;
+        this.slowMove = new Vector2(1f, 1f);
+        this.slowRot = 0;
     }
 
     public Kinematic(){
@@ -39,6 +44,8 @@ public class Kinematic extends Component {
     public Kinematic(Kinematic original){
         this(original.speed.copy(), original.acceleration.copy(), original.friction.copy(), original.rotSpeed, original
         .rotAcceleration, original.rotFriction);
+        this.slowMove = original.slowMove.copy();
+        this.slowRot = original.slowRot;
     }
 
     public Kinematic copy(){
@@ -63,14 +70,14 @@ public class Kinematic extends Component {
 
     public void move(){
         if(this.speed.magnitude() != 0){
-            ((Transform)this.entity.getComponent(COMPONENT_TYPE.TRANSFORM)).translate(this.speed);
+            ((Transform)this.entity.getComponent(COMPONENT_TYPE.TRANSFORM)).translate(this.speed.copy().multiply(this.slowMove));
             /*if(entity.scene.debug && entity.id.equals("space_ship")){
                 Log.i("speed", speed.toString());
                 Log.i("acc", acceleration.toString());
             }*/
         }
         if(this.rotSpeed != 0){
-            ((Transform)this.entity.getComponent(COMPONENT_TYPE.TRANSFORM)).rotate(this.rotSpeed);
+            ((Transform)this.entity.getComponent(COMPONENT_TYPE.TRANSFORM)).rotate(this.rotSpeed * slowRot);
         }
 
     }

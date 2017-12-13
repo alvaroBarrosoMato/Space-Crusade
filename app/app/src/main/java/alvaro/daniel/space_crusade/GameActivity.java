@@ -40,7 +40,7 @@ public class GameActivity extends AppCompatActivity {
     MyCanvas myCanvas;
     int actual_theme = 0;
     int pausePos = 0;
-    LinearLayout exitDialog;
+    LinearLayout exitDialog, gameOver;
     SensorManager sensorManager;
     Sensor gyroscope;
     public static Input input;
@@ -54,7 +54,10 @@ public class GameActivity extends AppCompatActivity {
 
         myCanvas = (MyCanvas)findViewById(R.id.gameCanvas);
         exitDialog = (LinearLayout)findViewById(R.id.exitDialog);
+        gameOver = (LinearLayout)findViewById(R.id.gameover);
         BaseActivity.setFont(exitDialog);
+        BaseActivity.setFont(gameOver);
+
         ((Button)findViewById(R.id.dialogButtonOk)).setOnClickListener((view)->{
             Animation pressed_anim = AnimationUtils.loadAnimation(this, R.anim.button_pressed_anim);
             view.startAnimation(pressed_anim);
@@ -70,6 +73,18 @@ public class GameActivity extends AppCompatActivity {
             view.startAnimation(pressed_anim);
             myCanvas.restartGame();
             toggleExitDialog(false);
+        });
+
+        ((Button)findViewById(R.id.gameOverExit)).setOnClickListener((view)->{
+            Animation pressed_anim = AnimationUtils.loadAnimation(this, R.anim.button_pressed_anim);
+            view.startAnimation(pressed_anim);
+            exitGame();
+        });
+        ((Button)findViewById(R.id.gameOverRetry)).setOnClickListener((view)->{
+            Animation pressed_anim = AnimationUtils.loadAnimation(this, R.anim.button_pressed_anim);
+            view.startAnimation(pressed_anim);
+            myCanvas.restartGame();
+            toggleGameOver(false, 0);
         });
 
         videoFrame = (VideoView) findViewById(R.id.videoFrame);
@@ -282,6 +297,40 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     exitDialog.setVisibility(View.GONE);
+                    myCanvas.playScene();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
+        }
+    }
+
+    public void toggleGameOver(Boolean state, int distance){
+        if(state){
+            myCanvas.pauseScene();
+            ((TextView)findViewById(R.id.distance)).setText(Integer.toString(distance));
+            //check for new record
+            if(distance > myPrefs.getRecord()){
+                ((TextView)findViewById(R.id.newRecord)).setVisibility(View.VISIBLE);
+                myPrefs.refreshRecord(distance);
+            }
+            gameOver.setVisibility(View.VISIBLE);
+            Animation dialog_appear = AnimationUtils.loadAnimation(this, R.anim.dialog_appear);
+            gameOver.startAnimation(dialog_appear);
+        }else{
+            ((TextView)findViewById(R.id.newRecord)).setVisibility(View.INVISIBLE);
+            Animation dialog_disappear = AnimationUtils.loadAnimation(this, R.anim.dialog_disappear);
+            gameOver.startAnimation(dialog_disappear);
+            dialog_disappear.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    gameOver.setVisibility(View.GONE);
                     myCanvas.playScene();
                 }
 
