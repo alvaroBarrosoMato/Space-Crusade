@@ -138,7 +138,7 @@ public class Vector2 {
 
     //devuelve el angulo en grados formado por el vector con el eje X positivo
     public float angleDeg(){
-        return (float)Math.atan2(y, x);
+        return (float)Math.atan2(x, y);
     }
 
     //rota el vector el angulo dado, en radianes CounterClockWise desde el eje X positivo

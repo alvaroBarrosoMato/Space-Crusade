@@ -152,7 +152,7 @@ public class GameThread extends Thread {
         sprites = getSprites(w, h);
         behaviours = getBehaviours();
         myScene = new Scene(context, "Game", w, h*2, w, h);
-        myScene.debug = true;
+        //myScene.debug = true;
         //landscape
         float sprW = sprites.get("landscape").width;
         float sprH = sprites.get("landscape").height;
@@ -233,17 +233,17 @@ public class GameThread extends Thread {
         sprH = sprites.get("hud_base").height;
         SceneEntity hudBase = new SceneEntity("hud_base", myScene, Scene.TAGS.UI, new Transform(new Vector2(w-sprW, convert(50)+sprH/2), -49));
         hudBase.addComponent(sprites.get("hud_base"));
-        hudBase.addComponent(behaviours.get("hud_controller").copy());
+        hudBase.addComponent(behaviours.get("hud_controllerSpeed").copy());
         myScene.addEntity(hudBase);
         //hp
         SceneEntity hudHp = new SceneEntity("hud_hp", myScene, Scene.TAGS.UI, new Transform(new Vector2(w-sprW, convert(50)+sprH), -50));
         hudHp.addComponent(sprites.get("hud_hp"));
-        hudHp.addComponent(behaviours.get("hud_controller").copy());
+        hudHp.addComponent(behaviours.get("hud_controllerHP").copy());
         myScene.addEntity(hudHp);
         //fuel
         SceneEntity hudFuel = new SceneEntity("hud_fuel", myScene, Scene.TAGS.UI, new Transform(new Vector2(w-sprW, convert(50)+sprH), -50));
         hudFuel.addComponent(sprites.get("hud_fuel"));
-        hudFuel.addComponent(behaviours.get("hud_controller").copy());
+        hudFuel.addComponent(behaviours.get("hud_controllerFuel").copy());
         myScene.addEntity(hudFuel);
 
         /*//spiner
@@ -257,11 +257,11 @@ public class GameThread extends Thread {
         myScene.addEntity(gameController);
 
         //FPS counter
-        SceneEntity fps = new SceneEntity("fps", myScene, Scene.TAGS.UI, new Transform(new Vector2(w - w/5, 40), -9));
+        /*SceneEntity fps = new SceneEntity("fps", myScene, Scene.TAGS.UI, new Transform(new Vector2(w - w/5, 40), -9));
         Sprite fpsSpr = new Sprite(new Bitmap[0], 0, true, new Vector2());
         fpsSpr.text = "FPS: 00";
         fps.addComponent(fpsSpr);
-        myScene.addEntity(fps);
+        myScene.addEntity(fps);*/
     }
 
     private Map<String, Sprite>  getSprites(int w, int h){
@@ -289,6 +289,7 @@ public class GameThread extends Thread {
                 new SpriteResource("explosion", new int[]{R.drawable.explosion1, R.drawable.explosion2, R.drawable.explosion3, R.drawable.explosion4, R.drawable.explosion5, R.drawable.explosion6
                         , R.drawable.explosion7, R.drawable.explosion8, R.drawable.explosion9, R.drawable.explosion10, R.drawable.explosion11, R.drawable.explosion12, R.drawable.explosion13
                         , R.drawable.explosion14, R.drawable.explosion15, R.drawable.explosion16},0.4f, false, new Vector2(-0.5f, -0.5f )),
+                new SpriteResource("fuel_barrel", new int[]{R.drawable.speaker}),
                 /*new SpriteResource("spiner", new int[]{R.drawable.spiner1, R.drawable.spiner2, R.drawable.spiner3, R.drawable.spiner4, R.drawable.spiner5, R.drawable.spiner6, R.drawable.spiner7, R.drawable.spiner8},
                         0.1f, true, new Vector2(-0.5f, -0.5f )),*/
         };
@@ -407,8 +408,9 @@ public class GameThread extends Thread {
 
                 SceneEntity ss = e.scene.getEntity("space_ship");
                 int hp = (int)ss.getMemory().get("hp");
+                float fuel = (float)ss.getMemory().get("fuel");
                 //game over
-                if(hp <= 0){
+                if(hp <= -1 || fuel <= -1){
                     myScene.pause();
                     float distance = (float)m.get("distance");
 
@@ -459,9 +461,17 @@ public class GameThread extends Thread {
                     bush.speed.y = -ssk.speed.y * 1.5f;
                     controlCenter.speed.y = -ssk.speed.y *1.2f;
                     ssk.slowMove = new Vector2(1, 0);
-                    ssk.friction.y = 0;
-                    ssk.acceleration.y = -0.5f;
+                    ssk.friction = new Vector2( 0.07f,0.01f);
+                    //ssk.acceleration.y = -0.5f;
                     m.put("launched", false);
+                    m.put("state", 1);
+                }
+
+                int state = (int)m.get("state");
+                if(state > 0){
+                    if(e.scene.uframe % 400 == 0){
+                        e.scene.addEntity(createBarrel(new Vector2(e.scene.width * (float)Math.random(), -100f), -9));
+                    }
                 }
                 return null;
             }
@@ -471,6 +481,7 @@ public class GameThread extends Thread {
         gc.memory.put("launched", false);
         gc.memory.put("distance", 0.0f);
         gc.memory.put("ss_speed", 0.0f);
+        gc.memory.put("state", 0);
         behaviours.put("game_controller", gc);
 
         //SpaceShip
@@ -482,7 +493,7 @@ public class GameThread extends Thread {
                 Kinematic ssKin = (Kinematic)e.getComponent(Component.COMPONENT_TYPE.KINEMATIC);
                 Transform ssTran = (Transform)e.getComponent(Component.COMPONENT_TYPE.TRANSFORM);
                 int hp = (int)m.get("hp");
-                int fuel = (int)m.get("fuel");
+                float fuel = (float)m.get("fuel");
 
                 //boolean launch = (boolean)behaviourRef.memory.get("launch");
                 int launchState = (int)behaviourRef.memory.get("launch_state");
@@ -525,7 +536,7 @@ public class GameThread extends Thread {
                 if(launchState == 2){
                     int acc_timer = (int)m.get("acc_timer");
                     if(acc_timer == 0){
-                        ssKin.acceleration.y = -0.06f;
+                        ssKin.acceleration.y = -0.1f;
                         m.put("launch_state", 3);
                     }else{
                         m.put("acc_timer", acc_timer-1);
@@ -535,24 +546,44 @@ public class GameThread extends Thread {
                 if(launchState == 3){
                     if(ssTran.position.y <= e.scene.canvas_height/2){
                         e.scene.getEntity("game_controller").getMemory().put("launched", true);
-                        ssKin.acceleration.y = -1f;
+                        ssKin.acceleration.y = -0.3f;
                         m.put("launch_state", 4);
                     }
                 }
 
-                if(launchState > 4){
+                if(launchState >= 4){
                     Input i = GameActivity.input;
-                    Log.i("gyroscope", i.orientations[2]+"");
-                    if(i.orientations[2] > 0.5){
-                        ssKin.rotAcceleration = 0.5f;
-                    }else if( i.orientations[2] < 0.5){
-                        ssKin.rotAcceleration = -0.5f;
+                    //Log.i("gyroscope", i.orientations[2]+" derecha " + (i.orientations[2] > 20f) + " izda " +(i.orientations[2] < 20f));
+                    if(i.orientations[2] > 20f){
+                        ssKin.acceleration.x = Scene.clamp(ssKin.acceleration.x +0.05f, 0, 0.2f);
+                        //ssKin.rotAcceleration = 0.5f;
+                        Log.i("rotacion", ssTran.rotation +" angleDeg "+ssKin.speed.angleDeg());
+                        //ssTran.rotation = 90;
+                    }else if(i.orientations[2] < -20f){
+                        ssKin.acceleration.x = Scene.clamp(ssKin.acceleration.x -0.05f, -0.2f, 0);
+                        //ssKin.acceleration.x -= 0.002f;
+                        Log.i("rotacion", ssTran.rotation +" angleDeg "+ssKin.speed.angleDeg());
+                       // ssKin.rotAcceleration = -0.5f;
+                    }else{
+                        ssKin.acceleration.x = Scene.lerp(ssKin.acceleration.x, 0, 0.02f);
+                    }
+
+                    //ssKin.speed.x = Scene.lerp(ssKin.speed.x, 0f, 0.02f);
+                    ssTran.rotation = Scene.lerpAngle(ssTran.rotation, 0, 0.03f);
+                    ssTran.rotation = Scene.lerpAngle(ssTran.rotation, ssTran.rotation + ssKin.speed.x, 0.1f);
+                    Sprite spr = (Sprite)e.getComponent(Component.COMPONENT_TYPE.SPRITE);
+                    if((ssTran.position.x < spr.width/2 && ssKin.speed.x < 0f) || (ssTran.position.x > (e.scene.width - spr.width/2) && ssKin.speed.x > 0)){
+                        //ssKin.acceleration.x = 0;
+                        ssKin.speed.x = 0;
+                    }
+                    if(e.scene.frame % 6 == 0){
+                        m.put("fuel", (float)fuel-0.1f);
                     }
                 }
 
                 boolean destroying = (boolean)m.get("destroying");
                 if(destroying){
-                    if(e.scene.frame % 10 == 0){
+                    if(e.scene.frame % 6 == 0){
                        m.put("hp", hp-1);
                     }
                     if(e.scene.uframe % 80 == 0){
@@ -565,13 +596,13 @@ public class GameThread extends Thread {
         Behaviour ss = new Behaviour(new MonoBehaviour[]{ssMB});
         ss.memory.put("launch", false);
         ss.memory.put("hp", 100);
-        ss.memory.put("fuel", 100);
+        ss.memory.put("fuel", 100.0f);
         ss.memory.put("launch_state", 0);
         ss.memory.put("destroying", false);
         behaviours.put("space_ship", ss);
 
         // hud controller
-        MonoBehaviour hudControllerMB = new MonoBehaviour() {
+        MonoBehaviour hudControllerHPMB = new MonoBehaviour() {
             @Override
             public Object call() {
                 if (behaviourRef == null || e == null)
@@ -580,37 +611,86 @@ public class GameThread extends Thread {
                 Sprite spr = (Sprite)e.getComponent(Component.COMPONENT_TYPE.SPRITE);
                 Transform t = (Transform)e.getComponent(Component.COMPONENT_TYPE.TRANSFORM);
                // SceneEntity gcB = e.scene.getEntity("game_controller");
-                Log.i("behaviour", e.id + " "+ (int)m.get("hp"));
-                if(e.id.equals("hud_hp")){
-                    int actualHp = (int)ss.getMemory().get("hp");
-                    int savedHp = (int)m.get("hp");
-                    if(actualHp != savedHp && actualHp >= 0){
-                        t.scale.y = (float)actualHp/100.0f;
-                        m.put("hp", actualHp);
-                    }
-                }else if(e.id.equals("hud_fuel")){
-                    int actualHp = (int)ss.getMemory().get("hp");
-                    int savedHp = (int)m.get("hp");
-                    if(actualHp != savedHp && actualHp >= 0){
-                        t.scale.y = (float)actualHp/100.0f;
-                        m.put("hp", actualHp);
-                    }
-                }else if(e.id.equals("hud_base")){
-                    if(spr.textOffset.magnitude() == 0){
-                        spr.textOffset.y = (float)spr.height+dpToPx(20);
-                        spr.textPaint.setColor(Color.BLACK);
-                        spr.textPaint.setTextAlign(Paint.Align.CENTER);
-                    }
-                    spr.text = (int)((Kinematic)ss.getComponent(Component.COMPONENT_TYPE.KINEMATIC)).speed.magnitude()*40f + " Km/H";
+
+                int actualHp = (int)ss.getMemory().get("hp");
+                int savedHp = (int)m.get("hp");
+                if(actualHp != savedHp && actualHp >= 0) {
+                    t.scale.y = (float) actualHp / 100.0f;
+                    m.put("hp", actualHp);
+                }
+
+                return null;
+            }
+        };
+        Behaviour hudControllerHP = new Behaviour(new MonoBehaviour[]{hudControllerHPMB});
+        hudControllerHP.memory.put("hp", 100);
+        behaviours.put("hud_controllerHP", hudControllerHP);
+
+        MonoBehaviour hudControllerFuelMB = new MonoBehaviour() {
+            @Override
+            public Object call() {
+                if (behaviourRef == null || e == null)
+                    return null;
+                SceneEntity ss = e.scene.getEntity("space_ship");
+                Sprite spr = (Sprite)e.getComponent(Component.COMPONENT_TYPE.SPRITE);
+                Transform t = (Transform)e.getComponent(Component.COMPONENT_TYPE.TRANSFORM);
+                // SceneEntity gcB = e.scene.getEntity("game_controller");
+
+                float actualFuel = (float)ss.getMemory().get("fuel");
+                float savedFuel = (float)m.get("fuel");
+                if(actualFuel != savedFuel && actualFuel >= 0) {
+                    t.scale.y = actualFuel / 100.0f;
+                    m.put("fuel", actualFuel);
                 }
                 return null;
             }
         };
-        Behaviour hudController = new Behaviour(new MonoBehaviour[]{hudControllerMB});
-        hudController.memory.put("hp", 100);
-        hudController.memory.put("fuel", 100);
-        behaviours.put("hud_controller", hudController);
+        Behaviour hudControllerFuel= new Behaviour(new MonoBehaviour[]{hudControllerFuelMB});
+        hudControllerFuel.memory.put("fuel", 100.0f);
+        behaviours.put("hud_controllerFuel", hudControllerFuel);
 
+        MonoBehaviour hudControllerSpeedMB = new MonoBehaviour() {
+            @Override
+            public Object call() {
+                if (behaviourRef == null || e == null)
+                    return null;
+                SceneEntity ss = e.scene.getEntity("space_ship");
+                Sprite spr = (Sprite)e.getComponent(Component.COMPONENT_TYPE.SPRITE);
+                // SceneEntity gcB = e.scene.getEntity("game_controller");
+
+                if(spr.textOffset.magnitude() == 0){
+                    spr.textOffset.y = (float)spr.height+dpToPx(20);
+                    spr.textPaint.setColor(Color.BLACK);
+                    spr.textPaint.setTextAlign(Paint.Align.CENTER);
+                }
+                spr.text = (int)((Kinematic)ss.getComponent(Component.COMPONENT_TYPE.KINEMATIC)).speed.magnitude()*40f + " Km/H";
+                return null;
+            }
+        };
+        Behaviour hudControllerSpeed= new Behaviour(new MonoBehaviour[]{hudControllerSpeedMB});
+        behaviours.put("hud_controllerSpeed", hudControllerSpeed);
+
+        //Barrel
+        MonoBehaviour barrelMB = new MonoBehaviour() {
+            @Override
+            public Object call(){
+                if(behaviourRef == null || e == null)
+                    return null;
+                SceneEntity ss =  e.scene.getEntity((String)m.get("space_ship"));
+                Collider c = (Collider)e.getComponent(Component.COMPONENT_TYPE.COLLIDER);
+                if(ss == null)
+                    return null;
+
+                if(Collider.checkStaticCollision(c, (Collider)ss.getComponent(Component.COMPONENT_TYPE.COLLIDER))){
+                    float fuel = (float)ss.getMemory().get("fuel");
+                    ss.getMemory().put("fuel", Scene.clamp(fuel+20, 0, 100f));
+                    e.destroy();
+                }
+                return null;
+            }
+        };
+        Behaviour barrel= new Behaviour(new MonoBehaviour[]{barrelMB});
+        behaviours.put("fuel_barrel", barrel);
 
         //Follow
         MonoBehaviour followMBcreate = new MonoBehaviour() {
@@ -681,6 +761,21 @@ public class GameThread extends Thread {
         explosion.addComponent(sprites.get("explosion").copy());
         explosion.addComponent(behaviours.get("end_anim").copy());
         return explosion;
+    }
+
+    public SceneEntity createBarrel(Vector2 pos, float depth){
+        Transform t = new Transform(pos, depth);
+        Kinematic k = new Kinematic(new Vector2(0f, 1f));
+        k.rotSpeed = 2f;
+
+
+        SceneEntity barrel = new SceneEntity("barrel#"+myScene.getIdNumber(), myScene, Scene.TAGS.DEFAULT, t);
+        Sprite spr = sprites.get("fuel_barrel").copy();
+        barrel.addComponent(spr);
+        barrel.addComponent(behaviours.get("fuel_barrel").copy());
+        barrel.addComponent(k.copy());
+        barrel.addComponent(new Collider(spr.width, spr.height, new Vector2(-spr.width/2, -spr.height/2)));
+        return barrel;
     }
 
     public int dpToPx(float dp){
