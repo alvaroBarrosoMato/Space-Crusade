@@ -56,7 +56,7 @@ public class Preferences {
         record = myPrefs.getInt("record", 0);
         musicVol = myPrefs.getInt("musicVol", 50);
         soundsVol = myPrefs.getInt("soundsVol", 50);
-        firstGame = myPrefs.getBoolean("firstGame", false);
+        firstGame = myPrefs.getBoolean("firstGame", true);
         musicMuted = musicVol == 0;
         soundsMuted = soundsVol == 0;
         musicBefore = Math.max(15, musicVol);

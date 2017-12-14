@@ -26,7 +26,7 @@ public class Kinematic extends Component {
         this.rotAcceleration = rotAcceleration;
         this.rotFriction = rotFriction;
         this.slowMove = new Vector2(1f, 1f);
-        this.slowRot = 0;
+        this.slowRot = 1;
     }
 
     public Kinematic(){

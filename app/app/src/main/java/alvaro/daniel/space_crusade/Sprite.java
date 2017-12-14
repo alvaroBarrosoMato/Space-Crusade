@@ -26,8 +26,8 @@ public class Sprite extends Component {
     boolean elemUI = false;
     String text = "";
     Paint textPaint;
-    float width;
-    float height;
+    private float width;
+    private float height;
     
     public Sprite(Bitmap[] images, float image_speed, boolean ui, Vector2 ... offset){
         super(COMPONENT_TYPE.SPRITE);
@@ -48,7 +48,7 @@ public class Sprite extends Component {
         textPaint.setTextSize(40);
         textPaint.setColor(Color.WHITE);
         this.width = images.length > 0? images[0].getWidth() : 0;
-        this.height = images.length > 0? images[0].getHeight() : 0;
+        this.height = images.length > 0? images[0].getHeight()  : 0;
         this.textOffset = new Vector2(0,0);
     }
 
@@ -75,6 +75,26 @@ public class Sprite extends Component {
     public void setImageIndex(int index){
         anim_controller = 0;
         image_index = index % images.size();
+    }
+
+    public float getWidth(){
+        return width;
+       /* Transform t = null;
+        if(entity != null && (t = (Transform)entity.getComponent(COMPONENT_TYPE.TRANSFORM)) != null){
+            return this.width = images.size() > 0? images.get(0).getWidth() * ((Transform)entity.getComponent(COMPONENT_TYPE.TRANSFORM)).scale.x : 0;
+        }else{
+            return this.width = images.size() > 0? images.get(0).getWidth() : 0;
+        }*/
+    }
+
+    public float getHeight(){
+        return height;
+        /*Transform t = null;
+        if(entity != null && (t = (Transform)entity.getComponent(COMPONENT_TYPE.TRANSFORM)) != null) {
+            return this.height = images.size() > 0 ? images.get(0).getHeight() * ((Transform) entity.getComponent(COMPONENT_TYPE.TRANSFORM)).scale.y : 0;
+        }else{
+            return this.height = images.size() > 0 ? images.get(0).getHeight() : 0;
+        }*/
     }
 
     public int getImage_index() {
@@ -117,6 +137,8 @@ public class Sprite extends Component {
             }
             canvas.drawText(text, pos.x + textOffset.x, pos.y + textOffset.y, textPaint);
         }
+        //canvas.drawBitmap(images.get(image_index),0, 0, null);
+        canvas.restore();
         if(entity.scene.debug){
             Collider c = (Collider)entity.getComponent(COMPONENT_TYPE.COLLIDER);
             if(c != null){
@@ -127,8 +149,6 @@ public class Sprite extends Component {
                 canvas.drawRect(new RectF(t.position.x + c.offset.x, t.position.y + c.offset.y, t.position.x + c.offset.x + c.width, t.position.y + c.offset.y + c.height), p);
             }
         }
-        //canvas.drawBitmap(images.get(image_index),0, 0, null);
-        canvas.restore();
     }
 
     public void calculeImageIndex(){

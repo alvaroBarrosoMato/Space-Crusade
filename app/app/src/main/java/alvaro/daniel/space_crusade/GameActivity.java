@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -51,6 +52,8 @@ public class GameActivity extends AppCompatActivity {
         myPrefs = BaseActivity.myPrefs;
         changeTheme();
         setContentView(R.layout.activity_game);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         myCanvas = (MyCanvas)findViewById(R.id.gameCanvas);
         exitDialog = (LinearLayout)findViewById(R.id.exitDialog);
@@ -234,6 +237,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void startGame(){
         //videoFrame.setVisibility(View.GONE);
+        myPrefs.refreshFirstGame(false);
         destroyVideoMP();
         skipText.clearAnimation();
         skipText.setVisibility(View.GONE);
@@ -316,6 +320,9 @@ public class GameActivity extends AppCompatActivity {
                 ((TextView)findViewById(R.id.newRecord)).setVisibility(View.VISIBLE);
                 myPrefs.refreshRecord(distance);
             }
+            //adding coins
+            int coins = myPrefs.getMoney();
+            myPrefs.refreshMoney(coins+distance/100);
             gameOver.setVisibility(View.VISIBLE);
             Animation dialog_appear = AnimationUtils.loadAnimation(this, R.anim.dialog_appear);
             gameOver.startAnimation(dialog_appear);

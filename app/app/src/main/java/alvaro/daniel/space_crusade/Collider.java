@@ -33,7 +33,7 @@ public class Collider extends Component {
     }
 
     public Collider(Sprite sprite){
-        this(sprite.width, sprite.height, sprite.offset);
+        this(sprite.getWidth(), sprite.getHeight(), sprite.offset);
     }
 
     public Collider(Collider original){
@@ -58,9 +58,11 @@ public class Collider extends Component {
         return 0;
     }
 
+
+    //devuelve una copia del vector posicion de la entidad
     public Vector2 getPosition(){
         if(entity != null){
-            return ((Transform)entity.getComponent(COMPONENT_TYPE.TRANSFORM)).position;
+            return ((Transform)entity.getComponent(COMPONENT_TYPE.TRANSFORM)).position.copy();
         }
         return null;
     }
@@ -75,6 +77,7 @@ public class Collider extends Component {
     public static boolean checkPointCollision(Vector2 point, Collider col){
         Vector2 minCorner = new Vector2(col.getX() + col.offset.x, col.getY() + col.offset.y );
         Vector2 maxCorner = new Vector2(col.getX() + col.offset.x + col.width, col.getY() + col.offset.y + col.height);
+        //Log.i("CollisionCheck", "Point: "+point.toString() + " Collider: "+ col.toString());
         return (point.x >= minCorner.x && point.x <= maxCorner.x && point.y >= minCorner.y && point.y <= maxCorner.y);
     }
 

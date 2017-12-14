@@ -33,24 +33,15 @@ public class Behaviour extends Component {
         this.onCreate = new ArrayList<>();
         this.onUpdate = new ArrayList<>();
         this.onDestroy = new ArrayList<>();
-        for (MonoBehaviour cmb: onCreateBeh) {
-            cmb.behaviourRef = this;
-            cmb.m = this.memory;
-            cmb.e = this.entity;
-            this.onCreate.add(cmb);
+        for (MonoBehaviour mb: onCreateBeh) {
+            addBehaviour(mb, BEHAVIOUR_TYPE.BEHAVIOUR_ONCREATE);
         }
 
-        for (MonoBehaviour umb: onUpdateBeh) {
-            umb.behaviourRef = this;
-            umb.m = this.memory;
-            umb.e = this.entity;
-            this.onUpdate.add(umb);
+        for (MonoBehaviour mb: onUpdateBeh) {
+            addBehaviour(mb, BEHAVIOUR_TYPE.BEHAVIOUR_ONUPDATE);
         }
-        for (MonoBehaviour dmb: onDestroyBeh) {
-            dmb.behaviourRef = this;
-            dmb.m = this.memory;
-            dmb.e = this.entity;
-            this.onDestroy.add(dmb);
+        for (MonoBehaviour mb: onDestroyBeh) {
+            addBehaviour(mb, BEHAVIOUR_TYPE.BEHAVIOUR_ONDESTROY);
         }
     }
 
@@ -76,10 +67,12 @@ public class Behaviour extends Component {
 
     public Behaviour(Behaviour original){
         this(original.onCreate.toArray(new MonoBehaviour[original.onCreate.size()]), original.onUpdate.toArray(new MonoBehaviour[original.onUpdate.size()]), original.onDestroy.toArray(new MonoBehaviour[original.onDestroy.size()]));
-        for(MonoBehaviour mb : original.onCreate){
+        /*for(MonoBehaviour mb : original.onCreate){
             //this.onCreate.add(mb.clone());
             //this.memory.put(e.getKey(), e.getValue())
-        }
+        }*/
+        //this.memory = new HashMap<>();
+        this.CREATE_FLAG = false;
         this.memory.putAll(original.memory);
     }
 
@@ -106,13 +99,15 @@ public class Behaviour extends Component {
     }
 
     public void update(){
-        if(CREATE_FLAG){
+        if(!CREATE_FLAG){
             for (MonoBehaviour r: onCreate) {
                 r.call();
             }
-        }
-        for (MonoBehaviour r: onUpdate) {
-            r.call();
+            CREATE_FLAG = true;
+        }else {
+            for (MonoBehaviour r : onUpdate) {
+                r.call();
+            }
         }
     }
 

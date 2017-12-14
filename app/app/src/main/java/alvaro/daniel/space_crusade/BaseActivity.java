@@ -55,9 +55,7 @@ public class BaseActivity extends AppCompatActivity /*implements MainFragment.On
         fragment_container = findViewById(R.id.fragment_container);
         background = (ImageView)findViewById(R.id.background);
         record = (TextView)findViewById(R.id.textRecord);
-        changeRecord(myPrefs.getRecord());
         money = (TextView)findViewById(R.id.textMoney);
-        changeMoney(myPrefs.getMoney());
 
         //fragManager = getSupportFragmentManager();
 
@@ -93,6 +91,8 @@ public class BaseActivity extends AppCompatActivity /*implements MainFragment.On
         if(background.getBackground() == null){
             startBackgroundAnim();
         }
+        changeRecord(myPrefs.getRecord());
+        changeMoney(myPrefs.getMoney());
     }
 
     @Override

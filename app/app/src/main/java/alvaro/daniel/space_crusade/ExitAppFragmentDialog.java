@@ -33,19 +33,7 @@ public class ExitAppFragmentDialog extends DialogFragment {
         //Pass null as the parent view because is going in the dialog layout
         View dialog = inflater.inflate(R.layout.fragment_exit_app_dialog, null);
         BaseActivity.setFont(dialog);
-        //add actiob buttons
-            //.setTitle(R.string.exitDialogTitle)
-            //.setMessage(R.string.exitDialogDescription)
-            /*.setPositiveButton(R.string.dialogAffirmative, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    getActivity().finish();
-                }
-            })
-            .setNegativeButton(R.string.dialogNegative, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // User cancelled the dialog
-                }
-            });*/
+
         Button dialogOk = (Button)dialog.findViewById(R.id.dialogButtonOk);
         Button dialogNo = (Button)dialog.findViewById(R.id.dialogButtonNo);
         dialogOk.setOnClickListener(new View.OnClickListener() {

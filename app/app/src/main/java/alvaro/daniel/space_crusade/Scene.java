@@ -134,6 +134,14 @@ public class Scene {
         return runningEntities.get(id);
     }
 
+    public SceneEntity getEntityContain(String key){
+        for(SceneEntity e : runningEntities.values()){
+            if(e.id.contains(key));
+                return e;
+        }
+        return null;
+    }
+
     public long getIdNumber(){
         return idNumber++;
     }
@@ -146,6 +154,7 @@ public class Scene {
         stop();
         frame = 0;
         uframe = 0;
+        idNumber = 0;
         for(Map.Entry<String, SceneEntity> e : originalEntities.entrySet()){
             runningEntities.put(e.getKey(), e.getValue().copy());
         }
@@ -182,7 +191,53 @@ public class Scene {
                 Log.i("List modified", "");
             }
             uframe++;
+            deleteClouds();
         }
+    }
+
+    private void deleteClouds(){
+        try{
+            for (SceneEntity e : runningEntities.values()) {
+                Sprite s = ((Sprite) e.getComponent(Component.COMPONENT_TYPE.SPRITE));
+                Transform t = (Transform) e.getComponent(Component.COMPONENT_TYPE.TRANSFORM);
+                if (e.id.contains("cloud") && (t.position.x > canvas_width + s.getWidth()*3 || t.position.x < 0 - s.getWidth()*3)){
+                    e.destroy();
+                }
+            }
+        }catch(ConcurrentModificationException e){
+
+        }
+    }
+
+    /*private void deleteEntities(){
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                runningEntities.forEach((id, e) -> {
+                    Sprite s = ((Sprite) e.getComponent(Component.COMPONENT_TYPE.SPRITE));
+                    Transform t = (Transform) e.getComponent(Component.COMPONENT_TYPE.TRANSFORM);
+                    if (s == null && (t.position.y > 10 && outScreen(e))) {
+                        e.destroy();
+                    }
+                });
+            } else {
+                for (SceneEntity e : runningEntities.values()) {
+                    Sprite s = ((Sprite) e.getComponent(Component.COMPONENT_TYPE.SPRITE));
+                    Transform t = (Transform) e.getComponent(Component.COMPONENT_TYPE.TRANSFORM);
+                    if (s == null && (t.position.y > 10 && outScreen(e))) {
+                        e.destroy();
+                    }
+                }
+            }
+        }catch (ConcurrentModificationException e){
+            Log.i("List modified", "");
+        }
+    }*/
+
+    //TODO mejorar para tener en cuenta ppsicion de camara y usar view_x ,view_y
+    public boolean outScreen(SceneEntity e){
+        Sprite s = ((Sprite) e.getComponent(Component.COMPONENT_TYPE.SPRITE));
+        Transform t = (Transform) e.getComponent(Component.COMPONENT_TYPE.TRANSFORM);
+        return (s != null && t.position.x + s.offset.x < s.getWidth()/2 || t.position.y + s.offset.y < s.getHeight()/2 || t.position.x + s.offset.x > canvas_width + s.getWidth()/2 || t.position.y + s.offset.y > canvas_height + s.getHeight()/2);
     }
 
     public void render(Canvas canvas){
